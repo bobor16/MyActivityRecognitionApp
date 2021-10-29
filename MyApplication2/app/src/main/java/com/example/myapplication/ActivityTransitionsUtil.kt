@@ -11,6 +11,8 @@ import com.google.android.gms.location.DetectedActivity
 import pub.devrel.easypermissions.EasyPermissions
 
 object ActivityTransitionsUtil {
+
+
     private fun getTransitions(): MutableList<ActivityTransition> {
 
         // List of activity transitions to track
