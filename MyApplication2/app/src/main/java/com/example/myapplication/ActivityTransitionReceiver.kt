@@ -6,9 +6,14 @@ import android.content.Intent
 import android.widget.Toast
 import com.google.android.gms.location.ActivityTransitionResult
 import io.karn.notify.Notify
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
+import java.io.IOException
+import java.lang.Exception
+import java.lang.NumberFormatException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ActivityTransitionReceiver : BroadcastReceiver() {
 
@@ -17,7 +22,7 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
 
         val file: String = filename
-        val fileOutputStream: FileOutputStream
+        var fileOutputStream: FileOutputStream
 
 
 
@@ -45,7 +50,16 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
                     Toast.makeText(context, info, Toast.LENGTH_LONG).show()
 
                     try {
-                        fileOutputStream = openFileOutput(file, Context.MODE_PRIVATE)
+                        fileOutputStream = context.openFileOutput(filename, Context.MODE_PRIVATE)
+                        fileOutputStream.write(info.toByteArray())
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                    } catch (e: NumberFormatException) {
+                        e.printStackTrace()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
                 }
             }

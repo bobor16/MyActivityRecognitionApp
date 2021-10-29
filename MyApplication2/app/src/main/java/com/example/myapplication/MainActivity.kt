@@ -15,6 +15,7 @@ import com.google.android.gms.location.ActivityRecognitionClient
 import kotlinx.android.synthetic.main.activity_main.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
+import java.io.FileOutputStream
 
 
 class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val fileOutputStream: FileOutputStream
 
 
         //The Activity Recognition Client returns a list of activities that a user might be doing
