@@ -24,13 +24,15 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
         val file: String = filename
         var fileOutputStream: FileOutputStream
 
-
-
         if (ActivityTransitionResult.hasResult(intent)) {
             val result = ActivityTransitionResult.extractResult(intent)
             result?.let {
                 result.transitionEvents.forEach { event ->
                     //Info about activity
+
+                    val activityInfo =
+                        ActivityTransitionsUtil.toActivityString(event.activityType) + "," +
+                                SimpleDateFormat("HH:mm:ss", Locale.US).format(Date())
                     val info =
                         "Transition: " + ActivityTransitionsUtil.toActivityString(event.activityType) +
                                 " (" + ActivityTransitionsUtil.toTransitionType(event.transitionType) + ")" + "   " +
@@ -51,8 +53,8 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
 
                     try {
                         fileOutputStream = context.openFileOutput(filename, Context.MODE_APPEND)
-                        fileOutputStream.write(info.toByteArray())
-                        fileOutputStream.write(",\n".toByteArray())
+                        fileOutputStream.write(activityInfo.toByteArray())
+                        fileOutputStream.write("\n".toByteArray())
                     } catch (e: FileNotFoundException) {
                         e.printStackTrace()
                     } catch (e: NumberFormatException) {
