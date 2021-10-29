@@ -24,8 +24,6 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
         val file: String = filename
         var fileOutputStream: FileOutputStream
 
-
-
         if (ActivityTransitionResult.hasResult(intent)) {
             val result = ActivityTransitionResult.extractResult(intent)
             result?.let {
