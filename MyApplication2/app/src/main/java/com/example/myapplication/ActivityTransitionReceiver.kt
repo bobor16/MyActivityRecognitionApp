@@ -52,6 +52,7 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
                     try {
                         fileOutputStream = context.openFileOutput(filename, Context.MODE_APPEND)
                         fileOutputStream.write(info.toByteArray())
+                        fileOutputStream.write(",\n".toByteArray())
                     } catch (e: FileNotFoundException) {
                         e.printStackTrace()
                     } catch (e: NumberFormatException) {
