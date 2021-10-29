@@ -50,7 +50,7 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
                     Toast.makeText(context, info, Toast.LENGTH_LONG).show()
 
                     try {
-                        fileOutputStream = context.openFileOutput(filename, Context.MODE_PRIVATE)
+                        fileOutputStream = context.openFileOutput(filename, Context.MODE_APPEND)
                         fileOutputStream.write(info.toByteArray())
                     } catch (e: FileNotFoundException) {
                         e.printStackTrace()
